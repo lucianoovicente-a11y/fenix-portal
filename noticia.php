@@ -154,14 +154,10 @@ if (isset($_POST['votar_enquete']) && isset($_POST['opcao_id'])) {
                     </div>
                     
                     <!-- Compartilhamento -->
-                    <div class="mt-8 pt-8 border-t border-gray-200">
-                        <h3 class="text-lg font-bold text-gray-800 mb-4">Compartilhar:</h3>
-                        <div class="flex gap-4">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"); ?>" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Facebook</a>
-                            <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"); ?>&text=<?php echo urlencode($noticia['titulo']); ?>" target="_blank" class="bg-sky-500 text-white px-4 py-2 rounded hover:bg-sky-600 transition">Twitter</a>
-                            <a href="https://wa.me/?text=<?php echo urlencode($noticia['titulo'] . ' - ' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"); ?>" target="_blank" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">WhatsApp</a>
-                        </div>
-                    </div>
+                    <?php 
+                    $urlAtual = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+                    echo gerarBotoesCompartilhamento($noticia['titulo'], $urlAtual);
+                    ?>
                 </div>
             </article>
             
